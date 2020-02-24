@@ -3,10 +3,13 @@
 <head>
 	<title>Space Station Location</title>
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<meta name="description" content="the Location of the International Space Station, pretty simple"/>
 	<meta name="keywords" content="international, space, station, location"/>
 	<meta name="author" content="Andrew Ziegler"/>
 	<meta name="robots" content="follow"/>
+
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
    crossorigin=""/>
@@ -117,12 +120,7 @@
 	<footer><p>andrew ziegler<p></footer>
 
 	<script>
-		function sendDom(velocity, altitude, latitude, longitude) {
-			document.getElementById("velocity").innerHTML = velocity.toFixed(2) + " mph";
-			document.getElementById("altitude").innerHTML = altitude.toFixed(2) + " m";
-			document.getElementById("latitude").innerHTML = latitude.toFixed(2);
-			document.getElementById("longitude").innerHTML = longitude.toFixed(2);
-		}
+		
 		
 		const mymap = L.map('issMap').setView([0, 0], 1);
 		const marker = L.marker([0, 0]).addTo(mymap); 
@@ -135,6 +133,13 @@
 
 		const issJSON = "https://api.wheretheiss.at/v1/satellites/25544/?units=miles";
 		let firstView = true;
+
+		function sendDom(velocity, altitude, latitude, longitude) {
+			document.getElementById("velocity").innerHTML = velocity.toFixed(2) + " mph";
+			document.getElementById("altitude").innerHTML = altitude.toFixed(2) + " m";
+			document.getElementById("latitude").innerHTML = latitude.toFixed(2);
+			document.getElementById("longitude").innerHTML = longitude.toFixed(2);
+		}
 
 		async function getIssInfo() {
 			let response = await fetch(issJSON);
